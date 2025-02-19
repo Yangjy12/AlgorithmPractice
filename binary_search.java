@@ -85,6 +85,51 @@ public class binary_search {
         return rightBorder;
     }
 
+    //力扣69.x的平方根
+    // 给你一个非负整数 x ，计算并返回 x 的 算术平方根 。
+    //由于返回类型是整数，结果只保留 整数部分 ，小数部分将被 舍去 。
+    //注意：不允许使用任何内置指数函数和算符，例如 pow(x, 0.5) 或者 x ** 0.5 。
+    //方法一、袖珍计算器法
+    public int mySqrt(int x) {
+        if (x == 0) {
+            return 0;
+        }
+        int ans = (int) Math.exp(0.5 * Math.log(x));
+        return (long) (ans + 1) * (ans + 1) <= x ? ans + 1 : ans;
+    }
+    //方法二、二分查找
+    public int mySqrt2(int x) {
+        int left = 0;
+        int right = x;
+        int ans=-1;
+        while (left <= right) {
+            int mid=left+(right-left)/2;
+            if ((long)mid*mid<=x){
+                ans=mid;
+                left = mid+1;
+            }else {
+                right=mid-1;
+            }
+        }
+        return ans;
+    }
+    //方法三、牛顿迭代法
+    public int mySqrt3(int x) {
+        if (x == 0) {
+            return 0;
+        }
+        double C=x,x0=x;
+        while(true){
+            double xi=0.5*(x0+C/x0);
+            if (Math.abs(x0-xi)<1e-7){
+                break;
+            }
+            x0=xi;
+        }
+        return (int)x0;
+    }
+
+
     public static void main(String[] args) {
         binary_search obj = new binary_search();
         int[] nums = {1,2,3,4,6,7,8,9};
