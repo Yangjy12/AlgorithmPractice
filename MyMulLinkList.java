@@ -40,9 +40,10 @@ public class MyMulLinkList {
         return cur.val;
     }
     public void addAtIndex(int index, int val) {
-        if (index < 0 || index >= size) {
+        if (index > size) {
             return;
         }
+        index = Math.max(0, index);
         ListNode cur = head;
         for (int i = 0; i < index; i++) {
             cur = cur.next;
