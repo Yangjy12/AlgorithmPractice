@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class reserves_string {
     public void reverseString(char[] s,int i,int j) {
         for(i=i,j=j;i<j;i++,j--){
@@ -45,11 +47,20 @@ public class reserves_string {
         }
         return sb;
     }
-    private void reverseString(StringBuilder sb,int start,int end){
+    private  void reverseString(StringBuilder sb,int start,int end){
         while (start<end){
             char temp=sb.charAt(start);
             sb.setCharAt(start,sb.charAt(end));
             sb.setCharAt(end,temp);
+            start++;
+            end--;
+        }
+    }
+    private static void reverseString1(char[] sb,int start,int end){
+        while (start<end){
+            char temp=sb[start];
+            sb[start]=sb[end];
+            sb[end]=temp;
             start++;
             end--;
         }
@@ -65,4 +76,17 @@ public class reserves_string {
             end=start+1;
         }
     }
+
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        String s = scanner.nextLine();
+        int len=s.length();
+        char[] charArray = s.toCharArray();
+        reverseString1(charArray,0,len-1);
+        reverseString1(charArray,0,n-1);
+        reverseString1(charArray,n,len-1);
+
+    }
+
 }
